@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const db = require('../db');
 require('dotenv').config();
 const passkey = process.env.EMAILPASSKEY;
 
@@ -15,7 +16,15 @@ const transporter = nodemailer.createTransport({
 });
 
 router.post('/contact', (req, res) => {
-  const { name, email, date } = req.body;
+  const { name, email, phoneno, date } = req.body;
+
+  const query = 'INSERT INTO EnquiresDetails (name, email, phonenumber, date) VALUES (?, ?, ?, ?)';
+
+  db.execute(query, [name, email, phoneno, date], (err, results) => {
+    if (err) {
+      console.log('Error inserting data into database: ', err);
+      return res.status(500).json({ success: false, message: 'Error storing data in database' });
+    }
 
   const mailOptions = {
     from: email,
@@ -34,6 +43,7 @@ router.post('/contact', (req, res) => {
     }
     
   });
+ });
 });
 
 
