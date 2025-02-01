@@ -30,7 +30,7 @@ router.post('/contact', (req, res) => {
     from: email,
     to: 'ganesh1861997@gmail.com',
     subject: 'Contact Us Form Submission',
-    text: `Name: ${name}\nEmail: ${email}\ndate: ${date}`
+    text: `Name: ${name}\nEmail: ${email}\nPhoneno: ${phoneno} \ndate: ${date}`
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

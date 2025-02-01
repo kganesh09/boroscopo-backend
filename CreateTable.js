@@ -5,7 +5,7 @@ const createEnquiresDetailsTableQuery = `
   CREATE TABLE IF NOT EXISTS EnquiresDetails (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
+    email VARCHAR(150) NOT NULL,
     phonenumber VARCHAR(15),
     date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
