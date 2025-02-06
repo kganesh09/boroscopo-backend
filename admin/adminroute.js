@@ -5,6 +5,7 @@ const adminAuthMiddleware = require("../middlewares/AdminAuth");
 const EnquiresChat = require("./EnquiresChat");
 const upload = require("../middlewares/multer");
 const ProductUpload = require("./ProductUpload");
+const ViewProduct = require("./ViewProduct")
 
 //Admin login API
 router.post("/login", loginHandler);
@@ -17,8 +18,6 @@ router.get("/enquires", adminAuthMiddleware, EnquiresChat);
 //Admin product Upload API
 router.post("/ProductUpload", adminAuthMiddleware, upload.array("images", 4), ProductUpload);
 
-router.get("/settings", adminAuthMiddleware, (req, res) => {
-  res.json({ message: "Admin Settings Page" });
-});
+router.get("/ViewProducts", adminAuthMiddleware, ViewProduct);
 
 module.exports = router;
