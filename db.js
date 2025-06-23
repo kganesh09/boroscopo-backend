@@ -7,7 +7,11 @@ const db = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  ssl: false, // Enable SSL for secure connections
+  port: process.env.DB_PORT || 3306,
+  ssl: {
+    rejectUnauthorized: false // ✅ disable strict SSL
+  },
+  connectTimeout: 10000 // ⏱️ 10 sec timeout
 });
 
 // Test connection
